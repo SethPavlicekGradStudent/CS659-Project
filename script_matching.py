@@ -118,3 +118,38 @@ def match_features(features1, features2, x1, y1, x2, y2):
 #     confidences = confidences[sorted_indices]
 
 #     return matches, confidences
+
+##################################################################################################
+# correlation functions from assignment 3
+
+def correlation(imageSlice,template):
+    flatimageSlice = imageSlice.flatten()
+    flatTemplate = template.flatten()
+    return np.corrcoef(flatimageSlice,flatTemplate)[0,1]
+
+#Zero-mean correlation
+def zmc(imageSlice,template):
+    flatimageSlice = imageSlice.flatten()
+    flatTemplate = template.flatten()
+
+    flatImageSliceZeroMean = flatimageSlice - np.mean(flatimageSlice)
+    flatTemplateZeroMean = flatTemplate - np.mean(flatTemplate)
+
+    flatImageSliceNorm = np.linalg.norm(flatimageSlice)
+    flatTemplateNorm = np.linalg.norm(flatTemplate)
+
+    return np.dot(flatImageSliceZeroMean,flatTemplateZeroMean) / (flatImageSliceNorm*flatTemplateNorm)
+
+#Sum Square Difference
+def ssd(imageSlice,template):
+    return 1 - np.sum((imageSlice-template)**2)
+
+#Normalized Cross Correlation
+def ncc(imageSlice,template):
+    flatimageSlice = imageSlice.flatten()
+    flatTemplate = template.flatten()
+
+    crossCorrelation = np.correlate(flatimageSlice,flatTemplate)
+    normilizationFactor = np.sqrt(np.sum(flatimageSlice**2) * np.sum(flatTemplate**2))
+    return crossCorrelation / normilizationFactor
+##################################################################################################
