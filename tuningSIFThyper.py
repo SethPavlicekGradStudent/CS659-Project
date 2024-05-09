@@ -227,6 +227,10 @@ def match_features(features1, features2, x1, y1, x2, y2, mainWindowSize, bins, n
 
     return matches, confidences
 
+#check if the output image file exists for we dont rerun si ulations we have already done
+def file_exists(file_path):
+    return os.path.exists(file_path)
+
 def main():
     #need to set working directory as the current directory for paths to work
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -273,12 +277,9 @@ def main():
 
     print('{:d} corners in image 1, {:d} corners in image 2'.format(len(x1), len(x2)))
 
-    # binList = [4, 8, 12, 16]
-    # mainWindowSizeList = [8, 16, 20]
-    # smallerWindowSizeList = [2, 4, 8]
-    binList = [4, 8]
-    mainWindowSizeList = [16, 20]
-    smallerWindowSizeList = [4]
+    binList = [4, 8, 12, 16, 128]
+    mainWindowSizeList = [8, 16, 20]
+    smallerWindowSizeList = [2, 4, 8]
 
     #loop over all the possible combinations
     i = 0
@@ -290,6 +291,16 @@ def main():
         for mainWindow in mainWindowSizeList:
             for smallWindow in smallerWindowSizeList:
                 try:
+                    image_name = f"circles_bin{bin}main{mainWindow}small{smallWindow}.jpg"
+                    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputImages/EvalImages")
+                    image_path = os.path.join(output_dir, image_name)
+
+                    # Check if the image file already exists or if we have already thrown an error for the given state somehow
+                    if file_exists(image_path) or accuracyResults.get(bin, {}).get(mainWindow, {}).get(smallWindow) is not None:
+                        print(f"Image {image_name} already exists. Skipping to next try.")
+                        #jump to next iteration of loop
+                        continue
+
                     image1_features = get_features(image1_bw, x1, y1, feature_width, mainWindow, smallWindow, bin)
                     image2_features = get_features(image2_bw, x2, y2, feature_width, mainWindow, smallWindow, bin)
                     ###Matching features over images
