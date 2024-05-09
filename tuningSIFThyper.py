@@ -345,7 +345,7 @@ def main():
                     accuracyResults[bin][mainWindow][smallWindow] = accuracy
 
                     plt.figure(); plt.imshow(c)
-                    plt.savefig(os.path.join(output_dir, f"eval_bin{bin}main{mainWindow}small{smallWindow}.jpg"))
+                    plt.savefig(os.path.join(output_dir, f"eval_bin{bin}main{mainWindow}small{smallWindow}accuracy{accuracy}.jpg"))
 
                 #exept any exception to continue running
                 except Exception as e:
