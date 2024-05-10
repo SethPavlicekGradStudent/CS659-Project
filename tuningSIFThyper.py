@@ -158,9 +158,8 @@ def get_features(image, x, y, feature_width, mainWindowSize, smallerWindowSize, 
     angle_floor = 360 // bins
     for j in range(Window.shape[0]):
       for k in range(Window.shape[0]):
-        vector_y = j // numRegionsAcross
-        vector_x = k // numRegionsAcross
-        
+        vector_y = j // (mainWindowSize // numRegionsAcross)
+        vector_x = k // (mainWindowSize // numRegionsAcross)
         or_index = (gradient_angles[j][k]-1) // angle_floor
         
         if(or_index < (bins - 1)):
@@ -347,6 +346,7 @@ def main():
                     plt.figure(); plt.imshow(c)
                     plt.savefig(os.path.join(output_dir, f"eval_bin{bin}main{mainWindow}small{smallWindow}accuracy{accuracy}.jpg"))
 
+                    plt.close()
                 #exept any exception to continue running
                 except Exception as e:
                     # Code to handle the exception
