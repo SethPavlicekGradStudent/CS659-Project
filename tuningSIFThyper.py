@@ -276,9 +276,18 @@ def main():
 
     print('{:d} corners in image 1, {:d} corners in image 2'.format(len(x1), len(x2)))
 
-    binList = [4, 8, 12, 16, 36, 45, 128, 90, 144, 180, 216, 360]
-    mainWindowSizeList = [8, 12, 16, 18, 20, 24]
-    smallerWindowSizeList = [2, 4, 6, 8]
+    # binList = [4, 8, 12, 16, 36, 45, 128, 90, 144, 180, 216, 360]
+    # mainWindowSizeList = [8, 12, 16, 18, 20, 24]
+    # smallerWindowSizeList = [2, 4, 6, 8]
+
+    start = 100
+    end = 180
+    interval = 10
+
+    # Generate the list of bin values
+    binList = list(range(start, end, interval))
+    mainWindowSizeList = [24]
+    smallerWindowSizeList = [6]
 
     #loop over all the possible combinations
     i = 0
