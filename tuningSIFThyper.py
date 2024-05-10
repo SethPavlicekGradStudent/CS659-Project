@@ -276,8 +276,8 @@ def main():
 
     print('{:d} corners in image 1, {:d} corners in image 2'.format(len(x1), len(x2)))
 
-    binList = [4, 8, 12, 16, 128]
-    mainWindowSizeList = [8, 16, 20]
+    binList = [4, 8, 12, 16, 36, 128, 180]
+    mainWindowSizeList = [8, 12, 16, 20, 24]
     smallerWindowSizeList = [2, 4, 8]
 
     #loop over all the possible combinations
