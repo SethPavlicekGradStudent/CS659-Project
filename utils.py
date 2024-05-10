@@ -269,6 +269,7 @@ def evaluate_correspondence(imgA, imgB, corr_fpath, scale_factor, x1_est, y1_est
     print('You found {}/{} required matches'.format(num_matches, num_req_matches))
     accuracy = np.mean(good_matches) * min(num_matches, num_req_matches)*1./num_req_matches
     print('Accuracy = {:f}'.format(accuracy))
+    print(f"Num of good matches {good_matches}")
     green = np.asarray([0, 1, 0], dtype=float)
     red = np.asarray([1, 0, 0], dtype=float)
     line_colors = np.asarray([green if m else red for m in good_matches])
