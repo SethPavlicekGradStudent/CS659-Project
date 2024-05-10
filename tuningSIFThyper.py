@@ -160,7 +160,7 @@ def get_features(image, x, y, feature_width, mainWindowSize, smallerWindowSize, 
       for k in range(Window.shape[0]):
         vector_y = j // (mainWindowSize // numRegionsAcross)
         vector_x = k // (mainWindowSize // numRegionsAcross)
-        or_index = (gradient_angles[j][k]-1) // angle_floor
+        or_index = ((gradient_angles[j][k] - 1) // angle_floor) % bins
         
         if(or_index < (bins - 1)):
           weight_r = (gradient_angles[j][k] % angle_floor) / angle_floor
@@ -168,7 +168,7 @@ def get_features(image, x, y, feature_width, mainWindowSize, smallerWindowSize, 
           complete_feature_vector[vector_y, vector_x, or_index] += weight_l * gradient_magnitudes[j][k]
           complete_feature_vector[vector_y,vector_x, or_index+1] += weight_r * gradient_magnitudes[j][k]
         else:
-          complete_feature_vector[vector_y,vector_x, or_index] += gradient_magnitudes[j][k]
+          complete_feature_vector[vector_y,vector_x, or_index - 1] += gradient_magnitudes[j][k]
 
     FeatureVectorIn[i] = complete_feature_vector.flatten()
 
