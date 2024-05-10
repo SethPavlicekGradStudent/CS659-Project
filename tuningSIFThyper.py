@@ -276,7 +276,7 @@ def main():
 
     print('{:d} corners in image 1, {:d} corners in image 2'.format(len(x1), len(x2)))
 
-    binList = [4, 8, 12, 16, 36, 128, 90, 180, 360]
+    binList = [4, 8, 12, 16, 36, 45, 128, 90, 180, 360]
     mainWindowSizeList = [8, 12, 16, 18, 20, 24]
     smallerWindowSizeList = [2, 4, 6, 8]
 
