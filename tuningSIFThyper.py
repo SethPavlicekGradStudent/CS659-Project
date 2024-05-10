@@ -276,9 +276,9 @@ def main():
 
     print('{:d} corners in image 1, {:d} corners in image 2'.format(len(x1), len(x2)))
 
-    binList = [4, 8, 12, 16, 36, 128, 180]
-    mainWindowSizeList = [8, 12, 16, 20, 24]
-    smallerWindowSizeList = [2, 4, 8]
+    binList = [4, 8, 12, 16, 36, 128, 180, 360]
+    mainWindowSizeList = [8, 12, 16, 18, 20, 24]
+    smallerWindowSizeList = [2, 4, 6, 8]
 
     #loop over all the possible combinations
     i = 0
@@ -345,7 +345,8 @@ def main():
 
                     plt.figure(); plt.imshow(c)
                     plt.savefig(os.path.join(output_dir, f"eval_bin{bin}main{mainWindow}small{smallWindow}accuracy{accuracy}.jpg"))
-
+                    
+                    #close the plot to not consume too much memory
                     plt.close()
                 #exept any exception to continue running
                 except Exception as e:

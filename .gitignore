@@ -2,7 +2,9 @@
 *.png
 *.jpg
 *.pkl
-
+!outputImages/EvalImages/*.png
+!outputImages/EvalImages/*.jpg
+!outputImages/*.pkl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
