@@ -235,9 +235,9 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_dir)
 
-    image1 = load_image('data/Notre Dame/A.jpg')
-    image2 = load_image('data/Notre Dame/B.jpg')
-    eval_file = 'data/Notre Dame/A_to_B.pkl'
+    image1 = load_image('./inputImages/A.jpg')
+    image2 = load_image('./inputImages/B.jpg')
+    eval_file = './inputImages/A_to_B.pkl'
 
     scale_factor = 0.5
     image1 = cv2.resize(image1, (0, 0), fx=scale_factor, fy=scale_factor)
