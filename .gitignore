@@ -3,6 +3,7 @@
 *.jpg
 *.pkl
 !inputImages/*.jpg
+!inputImages/*.pkl
 !outputImages/EvalImages/*.png
 !outputImages/EvalImages/*.jpg
 !outputImages/*.pkl
